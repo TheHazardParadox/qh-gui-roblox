@@ -42,47 +42,53 @@ local Paragraph = Tab:CreateParagraph({Title = "Welcome.", Content = "Welcome Qu
 
 local Tab = Window:CreateTab("Spinbot", "circle") -- Title, Image
 local Section = Tab:CreateSection("Main")
+
+local Section = Tab:CreateSection("Settings)
+
+local Tab = Window:CreateTab("Player", "person-standing") -- Title, Image
 local Toggle = Tab:CreateToggle({
-   Name = "Spinbot",
+   Name = "Infinite Jump",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   -- Simple Always-On Spinbot (put this in StarterPlayer > StarterPlayerScripts as a LocalScript)
-
+   Callback = function(enabled)
+   local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
-local rootPart = character:WaitForChild("HumanoidRootPart")
 
-local spinSpeed = 15  -- How fast you spin (higher = faster)
+-- Dedicated variable to toggle infinite jump on/off
+local enabled = true  -- Set to false to disable
 
-RunService.RenderStepped:Connect(function()
-    if rootPart then
-        rootPart.CFrame = rootPart.CFrame * CFrame.Angles(0, math.rad(spinSpeed), 0)
+UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+    if enabled and not gameProcessedEvent and input.KeyCode == Enum.KeyCode.Space then
+        humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
     end
-end)
-
--- Keep working when you respawn
-player.CharacterAdded:Connect(function(newChar)
-    character = newChar
-    humanoid = character:WaitForChild("Humanoid")
-    rootPart = character:WaitForChild("HumanoidRootPart")
 end)
    end,
 })
 
-local Section = Tab:CreateSection("Settings")
+local Section = Tab:CreateSection("Player Parameters")
 local Slider = Tab:CreateSlider({
-   Name = "Speed",
-   Range = {0, 100},
+   Name = "Walkspeed",
+   Range = {16, 250},
    Increment = 10,
-   Suffix = "Bananas",
-   CurrentValue = 15,
+   Suffix = "Walkspeed",
+   CurrentValue = 16,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-    local spinSpeed = Value
+   Callback = function(v)
+   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+   end,
+})
+local Slider = Tab:CreateSlider({
+   Name = "JumpPower",
+   Range = {50, 500},
+   Increment = 10,
+   Suffix = "JumpPower",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(v)
+   game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
    end,
 })
