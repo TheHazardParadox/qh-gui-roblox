@@ -48,10 +48,10 @@ local Slider = Tab:CreateSlider({
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(humanoid.WalkSpeed)
    local Players = game:GetService("Players")
-    local localPlayer = Players.LocalPlayer
-    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
-    local humanoid = character:WaitForChild("Humanoid")
-    print(humanoid.WalkSpeed)  -- Gets current WalkSpeed
-    humanoid.WalkSpeed = 16    -- Sets it locally
+   local localPlayer = Players.LocalPlayer
+   local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+   local humanoid = character:WaitForChild("Humanoid")
+   print(humanoid.WalkSpeed)  -- Gets current WalkSpeed
+   humanoid.WalkSpeed = 16    -- Sets it locally
    end,
 })
