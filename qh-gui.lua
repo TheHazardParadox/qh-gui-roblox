@@ -1,8 +1,9 @@
+--[SETUP]--
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
-   Name = "Queen Hazard GUI",
+   Name = "QH | Theft Blox Essentials",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "Queen Hazard GUI",
+   LoadingTitle = "QH | Theft Blox Essentials",
    LoadingSubtitle = "by Queen Hazard",
    ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
    Theme = "Amethyst", -- Check https://docs.sirius.menu/rayfield/configuration/themes
@@ -31,27 +32,26 @@ local Window = Rayfield:CreateWindow({
       Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
       FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      GrabKeyFromSite = false, -- I f this is true, set Key below to the RAW site you would like Rayfield to get the key from
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
-local Tab = Window:CreateTab("Home", "home") -- Title, Image
-local Paragraph = Tab:CreateParagraph({Title = "Welcome", Content = "Welcome Queen Hazard to your own personal GUI!"})
 
-local Tab = Window:CreateTab("Player", "person-standing") -- Title, Image
+--[HOME]--
+local Tab = Window:CreateTab("Home", "home") -- Title, Image
+local Paragraph = Tab:CreateParagraph({Title = "About", Content = "Welcome, these script is made to include all the essentials to use in Theft Blox!"})
+
+--[PLAYER]--
+local Section = Tab:CreateSection("Parameters")
 local Slider = Tab:CreateSlider({
-   Name = "Walkspeed",
-   Range = {16, 100},
-   Increment = 1,
-   Suffix = "Walkspeed",
-   CurrentValue = 16,
+   Name = "Slider Example",
+   Range = {0, 100},
+   Increment = 10,
+   Suffix = "Bananas",
+   CurrentValue = 10,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(humanoid.WalkSpeed)
-   local Players = game:GetService("Players")
-   local localPlayer = Players.LocalPlayer
-   local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
-   local humanoid = character:WaitForChild("Humanoid")
-   print(humanoid.WalkSpeed)  -- Gets current WalkSpeed
-   humanoid.WalkSpeed = 16    -- Sets it locally
+   Callback = function(Value)
+   -- The function that takes place when the slider changes
+   -- The variable (Value) is a number which correlates to the value the slider is currently at
    end,
 })
