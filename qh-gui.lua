@@ -39,4 +39,14 @@ local Tab = Window:CreateTab("Home", "home") -- Title, Image
 local Paragraph = Tab:CreateParagraph({Title = "Welcome", Content = "Welcome Queen Hazard to your own personal GUI!"})
 
 local Tab = Window:CreateTab("Player", "person-standing") -- Title, Image
-
+local Slider = Tab:CreateSlider({
+   Name = "Walkspeed",
+   Range = {16, 100},
+   Increment = 10,
+   Suffix = "Walkspeed",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(v)
+   game.Players.LocalPlayer.Character.Humanoid.Walkspeed = v
+   end,
+})
