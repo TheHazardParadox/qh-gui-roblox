@@ -51,8 +51,31 @@ local Slider = Tab:CreateSlider({
    Suffix = "WalkSpeed",
    CurrentValue = 16,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   -- The function that takes place when the slider changes
-   -- The variable (Value) is a number which correlates to the value the slider is currently at
+   Callback = function(SPEED)
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local Player = Players.LocalPlayer
+local SPEED = 50  -- Dedicated variable for speed! Change this number.
+
+local function setupSpeed(character)
+    local humanoid = character:WaitForChild("Humanoid")
+    
+    -- Continuously set speed to bypass resets
+    RunService.Heartbeat:Connect(function()
+        humanoid.WalkSpeed = SPEED
+    end)
+end
+
+-- Handle current character
+if Player.Character then
+    setupSpeed(Player.Character)
+end
+
+-- Handle respawns
+Player.CharacterAdded:Connect(setupSpeed)
+
+print("Speed hack loaded! Current speed: " .. SPEED)
    end,
 })
