@@ -38,26 +38,5 @@ local Window = Rayfield:CreateWindow({
 local Tab = Window:CreateTab("Home", "home") -- Title, Image
 local Paragraph = Tab:CreateParagraph({Title = "Welcome", Content = "Welcome Queen Hazard to your own personal GUI!"})
 
-local Tab = Window:CreateTab("Player", "person-standing" -- Title, Image
-local Slider = Tab:CreateSlider({
-   Name = "Walkspeed",
-   Range = {16, 250},
-   Increment = 10,
-   Suffix = "Walkspeed",
-   CurrentValue = 10,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-   end,
-})
-local Slider = Tab:CreateSlider({
-   Name = "JumpPower",
-   Range = {50, 500},
-   Increment = 10,
-   Suffix = "JumpPower",
-   CurrentValue = 10,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-       game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-   end,
-})
+local Tab = Window:CreateTab("Player", "person-standing") -- Title, Image
+
