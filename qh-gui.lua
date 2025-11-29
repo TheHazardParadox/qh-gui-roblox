@@ -42,13 +42,14 @@ local Tab = Window:CreateTab("Home", "home") -- Title, Image
 local Paragraph = Tab:CreateParagraph({Title = "About", Content = "Welcome, these script is made to include all the essentials to use in Theft Blox!"})
 
 --[PLAYER]--
+local Tab = Window:CreateTab("Player", "person-standing") -- Title, Image
 local Section = Tab:CreateSection("Parameters")
 local Slider = Tab:CreateSlider({
-   Name = "Slider Example",
-   Range = {0, 100},
-   Increment = 10,
-   Suffix = "Bananas",
-   CurrentValue = 10,
+   Name = "WalkSpeed",
+   Range = {16, 250},
+   Increment = 1,
+   Suffix = "WalkSpeed",
+   CurrentValue = 16,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
    -- The function that takes place when the slider changes
