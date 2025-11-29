@@ -1,5 +1,4 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-
 local Window = Rayfield:CreateWindow({
    Name = "Queen Hazard GUI",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -14,7 +13,7 @@ local Window = Rayfield:CreateWindow({
    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
 
    ConfigurationSaving = {
-      Enabled = false,
+      Enabled = true,
       FolderName = nil, -- Create a custom folder for your hub/game
       FileName = "Big Hub"
    },
@@ -36,49 +35,19 @@ local Window = Rayfield:CreateWindow({
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
-
 local Tab = Window:CreateTab("Home", "home") -- Title, Image
-local Paragraph = Tab:CreateParagraph({Title = "Welcome.", Content = "Welcome Queen Hazard to your personal GUI!"})
+local Paragraph = Tab:CreateParagraph({Title = "Welcome", Content = "Welcome Queen Hazard to your own personal GUI!"})
 
-local Tab = Window:CreateTab("Spinbot", "circle") -- Title, Image
-local Section = Tab:CreateSection("Main")
-
-local Section = Tab:CreateSection("Settings)
-
-local Tab = Window:CreateTab("Player", "person-standing") -- Title, Image
-local Toggle = Tab:CreateToggle({
-   Name = "Infinite Jump",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(enabled)
-   local UserInputService = game:GetService("UserInputService")
-local Players = game:GetService("Players")
-
-local player = Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-
--- Dedicated variable to toggle infinite jump on/off
-local enabled = true  -- Set to false to disable
-
-UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
-    if enabled and not gameProcessedEvent and input.KeyCode == Enum.KeyCode.Space then
-        humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-    end
-end)
-   end,
-})
-
-local Section = Tab:CreateSection("Player Parameters")
+local Tab = Window:CreateTab("Player", "person-standing" -- Title, Image
 local Slider = Tab:CreateSlider({
    Name = "Walkspeed",
    Range = {16, 250},
    Increment = 10,
    Suffix = "Walkspeed",
-   CurrentValue = 16,
+   CurrentValue = 10,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(v)
-   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+   Callback = function(Value)
+       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
    end,
 })
 local Slider = Tab:CreateSlider({
@@ -86,9 +55,9 @@ local Slider = Tab:CreateSlider({
    Range = {50, 500},
    Increment = 10,
    Suffix = "JumpPower",
-   CurrentValue = 16,
+   CurrentValue = 10,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(v)
-   game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+   Callback = function(Value)
+       game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
    end,
 })
