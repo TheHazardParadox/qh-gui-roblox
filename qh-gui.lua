@@ -57,7 +57,7 @@ local Section = PlayerTab:CreateSection("Player Parameters")
 
 local Slider = PlayerTab:CreateSlider({
    Name = "WalkSpeed",
-   Range = {16, 250},
+   Range = {0, 250},
    Increment = 1,
    Suffix = "Speed",
    CurrentValue = 16,
@@ -69,7 +69,7 @@ local Slider = PlayerTab:CreateSlider({
 
 local Slider = PlayerTab:CreateSlider({
    Name = "JumpPower",
-   Range = {50, 500},
+   Range = {0, 250},
    Increment = 1,
    Suffix = "Power",
    CurrentValue = 50,
