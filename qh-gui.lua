@@ -40,7 +40,7 @@ local Window = Rayfield:CreateWindow({
 
 --[MAIN TAB]--
 local MainTab = Window:CreateTab("Home", "home") -- Title, Image
-local MainSection = MainTab:CreateSection("Main")
+local MainSection = MainTab:CreateSection("About")
 
 Rayfield:Notify({
    Title = "Welcome!",
@@ -49,8 +49,14 @@ Rayfield:Notify({
    Image = nil,
 })
 
-local Slider = MainTab:CreateSlider({
-   Name = "Walkspeed",
+local Paragraph = MainTab:CreateParagraph({Title = "First", Content = "This is my personal hub."})
+
+--[PLAYER TAB]--
+local PlayerTab = Window:CreateTab("Player", "person-standing") -- Title, Image
+local Section = PlayerTab:CreateSection("Player Parameters")
+
+local Slider = PlayerTab:CreateSlider({
+   Name = "WalkSpeed",
    Range = {16, 250},
    Increment = 1,
    Suffix = "Speed",
@@ -61,14 +67,14 @@ local Slider = MainTab:CreateSlider({
    end,
 })
 
-local Dropdown = MainTab:CreateDropdown({
-   Name = "Select Item(s)",
-   Options = {"Pistol","RPG","Assault Rifle"},
-   CurrentOption = {"Pistol"},
-   MultipleOptions = true,
-   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Options)
-   -- The function that takes place when the selected option is changed
-   -- The variable (Options) is a table of strings for the current selected options
+local Slider = PlayerTab:CreateSlider({
+   Name = "JumpPower",
+   Range = {50, 500},
+   Increment = 1,
+   Suffix = "Power",
+   CurrentValue = 50,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+         game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
    end,
 })
