@@ -42,11 +42,16 @@ local Tab = Window:CreateTab("Player", "person-standing") -- Title, Image
 local Slider = Tab:CreateSlider({
    Name = "Walkspeed",
    Range = {16, 100},
-   Increment = 10,
+   Increment = 1,
    Suffix = "Walkspeed",
    CurrentValue = 16,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(v)
-   game.Players.LocalPlayer.Character.Humanoid.Walkspeed = v
+   Callback = function(humanoid.WalkSpeed)
+   local Players = game:GetService("Players")
+    local localPlayer = Players.LocalPlayer
+    local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    print(humanoid.WalkSpeed)  -- Gets current WalkSpeed
+    humanoid.WalkSpeed = 16    -- Sets it locally
    end,
 })
