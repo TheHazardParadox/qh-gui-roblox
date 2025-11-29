@@ -1,11 +1,12 @@
 --[SETUP]--
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
 local Window = Rayfield:CreateWindow({
-   Name = "QH | Theft Blox Essentials",
+   Name = "QH Hub",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "QH | Theft Blox Essentials",
+   LoadingTitle = "QH Hub",
    LoadingSubtitle = "by Queen Hazard",
-   ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
+   ShowText = "QH Hub", -- for mobile users to unhide rayfield, change if you'd like
    Theme = "Amethyst", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
    ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
@@ -16,7 +17,7 @@ local Window = Rayfield:CreateWindow({
    ConfigurationSaving = {
       Enabled = false,
       FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Big Hub"
+      FileName = "Queen Hazard's Hub"
    },
 
    Discord = {
@@ -32,33 +33,42 @@ local Window = Rayfield:CreateWindow({
       Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
       FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- I f this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
 
---[HOME]--
-local Tab = Window:CreateTab("Home", "home") -- Title, Image
-local Paragraph = Tab:CreateParagraph({Title = "About", Content = "Welcome, these script is made to include all the essentials to use in Theft Blox!"})
+--[MAIN TAB]--
+local MainTab = Window:CreateTab("Home", "home") -- Title, Image
+local MainSection = MainTab:CreateSection("Main")
 
---[PLAYER]--
-local Tab = Window:CreateTab("Player", "person-standing") -- Title, Image
-local Section = Tab:CreateSection("Parameters")
-local Slider = Tab:CreateSlider({
-   Name = "WalkSpeed",
+Rayfield:Notify({
+   Title = "Welcome!",
+   Content = "Welcome Queen Hazard to your own personal script hub!",
+   Duration = 5,
+   Image = nil,
+})
+
+local Slider = MainTab:CreateSlider({
+   Name = "Walkspeed",
    Range = {16, 250},
    Increment = 1,
-   Suffix = "WalkSpeed",
+   Suffix = "Speed",
    CurrentValue = 16,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(EXTRA_SPEED)
+   Callback = function(Value)
+         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+   end,
+})
 
-local EXTRA_SPEED = 16
-
-game:GetService("RunService").Heartbeat:Connect(function()
-    pcall(function()
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed += EXTRA_SPEED
-    end)
-end)
+local Dropdown = MainTab:CreateDropdown({
+   Name = "Select Item(s)",
+   Options = {"Pistol","RPG","Assault Rifle"},
+   CurrentOption = {"Pistol"},
+   MultipleOptions = true,
+   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Options)
+   -- The function that takes place when the selected option is changed
+   -- The variable (Options) is a table of strings for the current selected options
    end,
 })
