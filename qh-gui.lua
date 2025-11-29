@@ -51,31 +51,14 @@ local Slider = Tab:CreateSlider({
    Suffix = "WalkSpeed",
    CurrentValue = 16,
    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(SPEED)
+   Callback = function(EXTRA_SPEED)
 
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
+local EXTRA_SPEED = 16
 
-local Player = Players.LocalPlayer
-local SPEED = 50  -- Dedicated variable for speed! Change this number.
-
-local function setupSpeed(character)
-    local humanoid = character:WaitForChild("Humanoid")
-    
-    -- Continuously set speed to bypass resets
-    RunService.Heartbeat:Connect(function()
-        humanoid.WalkSpeed = SPEED
+game:GetService("RunService").Heartbeat:Connect(function()
+    pcall(function()
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed += EXTRA_SPEED
     end)
-end
-
--- Handle current character
-if Player.Character then
-    setupSpeed(Player.Character)
-end
-
--- Handle respawns
-Player.CharacterAdded:Connect(setupSpeed)
-
-print("Speed hack loaded! Current speed: " .. SPEED)
+end)
    end,
 })
