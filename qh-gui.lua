@@ -77,7 +77,7 @@ local Input = PetTab:CreateInput({
    end,
 })
 
-local Button = Tab:CreateButton({
+local Button = PetTab:CreateButton({
    Name = "Spawn Pet",
    Callback = function()
    -- The function that takes place when the button is pressed
