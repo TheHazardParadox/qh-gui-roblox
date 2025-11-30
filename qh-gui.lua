@@ -1,10 +1,11 @@
---[SETUP]--
+if game.PlaceId == 10149471313 then
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "QH Hub",
+   Name = "QH | Zombie Survival Garry's Mod Suite",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "QH Hub",
+   LoadingTitle = "QH | Zombie Survival Garry's Mod Suite",
    LoadingSubtitle = "by Queen Hazard",
    ShowText = "QH Hub", -- for mobile users to unhide rayfield, change if you'd like
    Theme = "Amethyst", -- Check https://docs.sirius.menu/rayfield/configuration/themes
@@ -17,7 +18,7 @@ local Window = Rayfield:CreateWindow({
    ConfigurationSaving = {
       Enabled = false,
       FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Queen Hazard's Hub"
+      FileName = "Big Hub"
    },
 
    Discord = {
@@ -38,43 +39,14 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
---[MAIN TAB]--
-local MainTab = Window:CreateTab("Home", "home") -- Title, Image
-local MainSection = MainTab:CreateSection("About")
+else
 
-Rayfield:Notify({
-   Title = "Welcome!",
-   Content = "Welcome Queen Hazard to your own personal script hub!",
+    local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+    Rayfield:Notify({
+   Title = "Game not supported",
+   Content = "This game is not the specified game for the suite.",
    Duration = 5,
    Image = nil,
 })
 
-local Paragraph = MainTab:CreateParagraph({Title = "First", Content = "This is my personal hub."})
-
---[PLAYER TAB]--
-local PlayerTab = Window:CreateTab("Player", "person-standing") -- Title, Image
-local Section = PlayerTab:CreateSection("Player Parameters")
-
-local Slider = PlayerTab:CreateSlider({
-   Name = "WalkSpeed",
-   Range = {0, 250},
-   Increment = 1,
-   Suffix = "Speed",
-   CurrentValue = 16,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
-   end,
-})
-
-local Slider = PlayerTab:CreateSlider({
-   Name = "JumpPower",
-   Range = {0, 250},
-   Increment = 1,
-   Suffix = "Power",
-   CurrentValue = 50,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-         game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
-   end,
-})
+end
