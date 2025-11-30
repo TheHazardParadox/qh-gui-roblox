@@ -1,3 +1,4 @@
+--[SETUP]--
 if game.PlaceId == 10149471313 then
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
@@ -16,9 +17,9 @@ local Window = Rayfield:CreateWindow({
    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
 
    ConfigurationSaving = {
-      Enabled = false,
+      Enabled = true,
       FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Big Hub"
+      FileName = "QH ZSGM Suite"
    },
 
    Discord = {
@@ -39,14 +40,55 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
-else
-
-    local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-    Rayfield:Notify({
-   Title = "Game not supported",
-   Content = "This game is not the specified game for the suite.",
-   Duration = 5,
-   Image = nil,
+--[MAIN TAB]--
+local MainTab = Window:CreateTab("Main", "home") -- Title, Image
+local Paragraph = MainTab:CreateParagraph({Title = "Information", Content = "Welcome! This is a hub for all the utilities you could need in this game, enjoy!"})
+local Section = MainTab:CreateSection("Tools")
+local Button = MainTab:CreateButton({
+   Name = "Infinite Yield",
+   Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+   end,
 })
+
+local Button = MainTab:CreateButton({
+   Name = "Dex Explorer",
+   Callback = function()
+        loadstring(game:HttpGet("https://obj.wearedevs.net/2/scripts/Dex%20Explorer.lua"))()
+   end,
+})
+
+--[VISUAL TAB]--
+local VisualTab = Window:CreateTab("Visual", "eye") -- Title, Image
+local Toggle = VisualTab:CreateToggle({
+   Name = "ESP",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+local Toggle = VisualTab:CreateToggle({
+   Name = "Show Window HP",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+local Toggle = VisualTab:CreateToggle({
+   Name = "Show Planks HP",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
 
 end
