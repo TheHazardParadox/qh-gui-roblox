@@ -1,12 +1,12 @@
 --[SETUP]--
-if game.PlaceId == 10149471313 then
+if game.PlaceId == 126884695634066 then
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "QH | Zombie Survival Garry's Mod Suite",
+   Name = "QH Hub | Grow a Garden Suite",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "QH | Zombie Survival Garry's Mod Suite",
+   LoadingTitle = "QH Hub | Grow a Garden Suite",
    LoadingSubtitle = "by Queen Hazard",
    ShowText = "QH Hub", -- for mobile users to unhide rayfield, change if you'd like
    Theme = "Amethyst", -- Check https://docs.sirius.menu/rayfield/configuration/themes
@@ -17,9 +17,9 @@ local Window = Rayfield:CreateWindow({
    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
 
    ConfigurationSaving = {
-      Enabled = true,
+      Enabled = false,
       FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "QH ZSGM Suite"
+      FileName = "Big Hub"
    },
 
    Discord = {
@@ -40,55 +40,50 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
---[MAIN TAB]--
-local MainTab = Window:CreateTab("Main", "home") -- Title, Image
-local Paragraph = MainTab:CreateParagraph({Title = "Information", Content = "Welcome! This is a hub for all the utilities you could need in this game, enjoy!"})
-local Section = MainTab:CreateSection("Tools")
-local Button = MainTab:CreateButton({
-   Name = "Infinite Yield",
+local PetTab = Window:CreateTab("Pet Spawner", 4483362458) -- Title, Image
+local Input = PetTab:CreateInput({
+   Name = "Pet Name",
+   CurrentValue = "",
+   PlaceholderText = "[Mutation] [Pet Name]",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+   Callback = function(Text)
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
+
+local Input = PetTab:CreateInput({
+   Name = "Pet Weight",
+   CurrentValue = "",
+   PlaceholderText = "0",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+   Callback = function(Text)
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
+
+local Input = PetTab:CreateInput({
+   Name = "Pet Age",
+   CurrentValue = "",
+   PlaceholderText = "0",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+   Callback = function(Text)
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Spawn Pet",
    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+   -- The function that takes place when the button is pressed
    end,
 })
 
-local Button = MainTab:CreateButton({
-   Name = "Dex Explorer",
-   Callback = function()
-        loadstring(game:HttpGet("https://obj.wearedevs.net/2/scripts/Dex%20Explorer.lua"))()
-   end,
-})
-
---[VISUAL TAB]--
-local VisualTab = Window:CreateTab("Visual", "eye") -- Title, Image
-local Toggle = VisualTab:CreateToggle({
-   Name = "ESP",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   -- The function that takes place when the toggle is pressed
-   -- The variable (Value) is a boolean on whether the toggle is true or false
-   end,
-})
-
-local Toggle = VisualTab:CreateToggle({
-   Name = "Show Window HP",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   -- The function that takes place when the toggle is pressed
-   -- The variable (Value) is a boolean on whether the toggle is true or false
-   end,
-})
-
-local Toggle = VisualTab:CreateToggle({
-   Name = "Show Planks HP",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   -- The function that takes place when the toggle is pressed
-   -- The variable (Value) is a boolean on whether the toggle is true or false
-   end,
-})
-
+local SeedTab = Window:CreateTab("Seed Spawner", 4483362458) -- Title, Image
 
 end
